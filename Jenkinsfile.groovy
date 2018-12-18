@@ -1,4 +1,12 @@
 node {
+	environment {
+		echo "TimeStamp: ${currentBuild.startTimeInMillis}"
+
+echo "TimeStamp: ${Util.getTimeSpanString(System.currentTimeMillis())}"
+     PackageName = "Package.zip"
+     
+    // BinaryFolder=""
+   }
     stage('Checkout') {
         checkout scm
         echo 'Downloading codes...'
@@ -14,7 +22,7 @@ node {
                 //echo 'Workspace:'+"${env.WORKSPACE}"
 	   	//bat 'dir'
 		dir ('Archive') {
-	          zip zipFile: 'Package.zip', archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
+			zip zipFile: '${PackageName}', archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
 		  archiveArtifacts artifacts: 'Package.zip', fingerprint: true
 		  bat 'del Package.zip'
 		}
