@@ -12,11 +12,11 @@ node {
     }
    stage('ZIP Artifact') {     
                 //echo 'Workspace:'+"${env.WORKSPACE}"
-	   	sh 'ls -l'
+	   	bat 'dir'
 		dir ('Archive') {
 	          zip zipFile: 'Archive/package.zip', archive: false, dir: 'AutomationWeb/bin/Release/netcoreapp2.1/publish'
 		}
-		sh 'ls -l'
+		bat 'dir'
                 
                 //bat 'echo test > archive/test.txt'
                 //zip zipFile: 'Archive/package.zip', archive: false, dir: 'AutomationWeb/bin/Release/netcoreapp2.1/publish'
