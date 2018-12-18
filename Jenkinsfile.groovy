@@ -11,7 +11,7 @@ node {
     }
     stage('ZIP Artifact') {
         //echo 'Workspace:'+"${env.WORKSPACE}"
-        def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddhhmmss', TimeZone.getTimeZone('Singapore'))
+        def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddHHmmss', TimeZone.getTimeZone('Singapore'))
         echo 'time stamp:' + "${timeStamp}"
         def packageName = 'Package_' + "${timeStamp}" + '.zip'
         echo 'Package Name:' + "${packageName}"
