@@ -12,8 +12,8 @@ node {
     }
    stage ('zip artifact') {
            
-		jsonPath = "${env.WORKSPACE}"
-                echo jsonPath
+		
+                echo "${env.WORKSPACE}"
                 sh 'mkdir archive'
                 sh 'echo test > archive/test.txt'
                 //zip zipFile: 'test.zip', archive: false, dir: 'archive'
