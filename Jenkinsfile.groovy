@@ -6,16 +6,18 @@ node {
     stage('Build') {
         echo 'Build project...'
         
-	bat "\"${tool 'msbuild15.0'}\" AutomationWeb.sln /t:Restore"
-	bat "\"${tool 'msbuild15.0'}\" AutomationWeb.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
+	//bat "\"${tool 'msbuild15.0'}\" AutomationWeb.sln /t:Restore"
+	//bat "\"${tool 'msbuild15.0'}\" AutomationWeb.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
 	
     }
-   stage ('push artifact') {
+   stage ('zip artifact') {
             steps {
+		var jsonPath = "${env.WORKSPACE}"
+                echo jsonPath
                 sh 'mkdir archive'
                 sh 'echo test > archive/test.txt'
-                zip zipFile: 'test.zip', archive: false, dir: 'archive'
-                archiveArtifacts artifacts: 'test.zip', fingerprint: true
+                //zip zipFile: 'test.zip', archive: false, dir: 'archive'
+                //archiveArtifacts artifacts: 'test.zip', fingerprint: true
             }
         }
     stage('Deploy') {
