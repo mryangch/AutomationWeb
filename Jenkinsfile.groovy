@@ -15,6 +15,7 @@ node {
 	   	//bat 'dir'
 		dir ('Archive') {
 	          zip zipFile: 'Package.zip', archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
+		  archiveArtifacts artifacts: 'Package.zip', fingerprint: true
 		}
 		//bat 'dir'
                 
