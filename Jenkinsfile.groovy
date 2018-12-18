@@ -11,14 +11,14 @@ node {
 	
     }
    stage ('zip artifact') {
-            steps {
+           
 		var jsonPath = "${env.WORKSPACE}"
                 echo jsonPath
                 sh 'mkdir archive'
                 sh 'echo test > archive/test.txt'
                 //zip zipFile: 'test.zip', archive: false, dir: 'archive'
                 //archiveArtifacts artifacts: 'test.zip', fingerprint: true
-            }
+           
         }
     stage('Deploy') {
         echo 'Deploy package...'
