@@ -13,7 +13,7 @@ node {
    stage ('zip artifact') {
            
 		
-                echo "${env.WORKSPACE}"
+                echo 'Workspace:'+"${env.WORKSPACE}"
                 sh 'mkdir archive'
                 sh 'echo test > archive/test.txt'
                 //zip zipFile: 'test.zip', archive: false, dir: 'archive'
