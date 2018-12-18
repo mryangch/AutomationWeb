@@ -1,7 +1,7 @@
 node {
 	environment {
 		
-     PackageName = "Package.zip"
+     PackageName = "Package_"+${currentBuild.startTimeInMillis}+".zip"
      
     // BinaryFolder=""
    }
@@ -21,7 +21,6 @@ node {
 	   	//bat 'dir'
 	   echo "TimeStamp: ${currentBuild.startTimeInMillis}"
 
-echo "TimeStamp: ${Util.getTimeSpanString(System.currentTimeMillis())}"
 		dir ('Archive') {
 			zip zipFile: "${PackageName}", archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
 		  archiveArtifacts artifacts: "${PackageName}", fingerprint: true
