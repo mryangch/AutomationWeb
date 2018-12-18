@@ -1,8 +1,6 @@
 node {
 	environment {
-		echo "TimeStamp: ${currentBuild.startTimeInMillis}"
-
-echo "TimeStamp: ${Util.getTimeSpanString(System.currentTimeMillis())}"
+		
      PackageName = "Package.zip"
      
     // BinaryFolder=""
@@ -21,10 +19,13 @@ echo "TimeStamp: ${Util.getTimeSpanString(System.currentTimeMillis())}"
    stage('ZIP Artifact') {     
                 //echo 'Workspace:'+"${env.WORKSPACE}"
 	   	//bat 'dir'
+	   echo "TimeStamp: ${currentBuild.startTimeInMillis}"
+
+echo "TimeStamp: ${Util.getTimeSpanString(System.currentTimeMillis())}"
 		dir ('Archive') {
-			zip zipFile: '${PackageName}', archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
-		  archiveArtifacts artifacts: 'Package.zip', fingerprint: true
-		  bat 'del Package.zip'
+			zip zipFile: "${PackageName}", archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
+		  archiveArtifacts artifacts: "${PackageName}", fingerprint: true
+		  bat 'del ' +"${PackageName}"
 		}
 		//bat 'dir'
                 
