@@ -20,15 +20,15 @@ node {
                 //echo 'Workspace:'+"${env.WORKSPACE}"
 	   	//bat 'dir'
 	   //echo "TimeStamp: ${currentBuild.startTimeInMillis}"
-	   def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('CST'))
+	   def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('Asia/Singapore'))
 	   echo 'time stamp:'+"${timeStamp}"
-	   def PackageName = "Package_"+${timeStamp}+".zip"
-	    echo 'Package Name:'+"${PackageName}"
+	   def packageName = 'Package_'+"${timeStamp}"+'.zip'
+	    echo 'Package Name:'+"${packageName}"
 
 		dir ('Archive') {
-			zip zipFile: "${PackageName}", archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
-		  archiveArtifacts artifacts: "${PackageName}", fingerprint: true
-		  bat 'del ' +"${PackageName}"
+			zip zipFile: "${packageName}", archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
+		  archiveArtifacts artifacts: "${packageName}", fingerprint: true
+		  bat 'del ' +"${packageName}"
 		}
 		//bat 'dir'
                 
