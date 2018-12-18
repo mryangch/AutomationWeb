@@ -10,11 +10,16 @@ node {
 	//bat "\"${tool 'msbuild15.0'}\" AutomationWeb.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
 	
     }
-   stage('zip artifact') {     
-                echo 'Workspace:'+"${env.WORKSPACE}"
-                //bat 'mkdir archive'
+   stage('ZIP Artifact') {     
+                //echo 'Workspace:'+"${env.WORKSPACE}"
+	   	sh 'ls -l'
+		dir ('Archive') {
+	          zip zipFile: 'Archive/package.zip', archive: false, dir: 'AutomationWeb/bin/Release/netcoreapp2.1/publish'
+		}
+		sh 'ls -l'
+                
                 //bat 'echo test > archive/test.txt'
-                zip zipFile: 'package.zip', archive: false, dir: 'AutomationWeb/bin/Release/netcoreapp2.1/publish'
+                //zip zipFile: 'Archive/package.zip', archive: false, dir: 'AutomationWeb/bin/Release/netcoreapp2.1/publish'
                 //archiveArtifacts artifacts: 'test.zip', fingerprint: true
            
         }
