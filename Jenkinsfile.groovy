@@ -1,7 +1,7 @@
 node {
 	environment {
 		
-     PackageName = "Package_"+${currentBuild.startTimeInMillis}+".zip"
+     //PackageName = "Package_"+${currentBuild.startTimeInMillis}+".zip"
      
     // BinaryFolder=""
    }
@@ -19,7 +19,11 @@ node {
    stage('ZIP Artifact') {     
                 //echo 'Workspace:'+"${env.WORKSPACE}"
 	   	//bat 'dir'
-	   echo "TimeStamp: ${currentBuild.startTimeInMillis}"
+	   //echo "TimeStamp: ${currentBuild.startTimeInMillis}"
+	   def timeStamp = Calendar.getInstance().getTime().format('YYYYMMdd-hhmmss',TimeZone.getTimeZone('CST'))
+	   echo 'time stamp:'+"${timeStamp}"
+	   def PackageName = "Package_"+${timeStamp}+".zip"
+	    echo 'Package Name:'+"${PackageName}"
 
 		dir ('Archive') {
 			zip zipFile: "${PackageName}", archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
