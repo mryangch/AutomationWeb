@@ -10,12 +10,12 @@ node {
 	//bat "\"${tool 'msbuild15.0'}\" AutomationWeb.sln /p:Configuration=Release /p:Platform=\"Any CPU\""
 	
     }
-   stage ('zip artifact') {
+   stage('zip artifact') {
            
 		
                 echo 'Workspace:'+"${env.WORKSPACE}"
-                sh 'mkdir archive'
-                sh 'echo test > archive/test.txt'
+                bat 'mkdir archive'
+                bat 'echo test > archive/test.txt'
                 //zip zipFile: 'test.zip', archive: false, dir: 'archive'
                 //archiveArtifacts artifacts: 'test.zip', fingerprint: true
            
