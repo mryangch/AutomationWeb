@@ -23,7 +23,7 @@ node {
     }
     stage('Deploy') {
         echo 'Downloading package...'
-        http://localhost:8080/job/AutomationWeb/28/artifact/Package_20181218164328.zip
+        wget http://localhost:8080/job/AutomationWeb/28/artifact/Package_20181218164328.zip
         echo 'Deploy package...'
 
     }
