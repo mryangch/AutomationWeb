@@ -23,8 +23,11 @@ node {
     }
     stage('Deploy') {
         echo 'Downloading package...'
-        wget http://localhost:8080/job/AutomationWeb/28/artifact/Package_20181218164328.zip
+        //wget http://localhost:8080/job/AutomationWeb/28/artifact/Package_20181218164328.zip
         echo 'Deploy package...'
 
     }
+    emailext attachLog: true, body: '''Hello, 
+
+Please be informed and watch out.''', recipientProviders: [developers()], subject: 'A new Jinkens Build is triggered ', to: 'yang.chun.hai@avanade.com'
 }
