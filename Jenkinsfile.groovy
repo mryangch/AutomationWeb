@@ -1,10 +1,10 @@
 node {
     def timeStamp = Calendar.getInstance().getTime().format('YYYYMMddHHmmss', TimeZone.getTimeZone('Singapore'))
-    //echo 'time stamp:' + "${timeStamp}"
     def packageName = 'Package_' + "${timeStamp}" + '.zip'
-    
+    def sourceDir='../AutomationWeb/bin/Release/netcoreapp2.1/publish'
+
     stage('Checkout') {
-        checkout scm
+        //checkout scm
         echo 'Downloading codes...'
     }
     stage('Build') {
@@ -15,13 +15,16 @@ node {
     stage('ZIP Artifact') {
         //echo 'Workspace:'+"${env.WORKSPACE}"
         echo 'Package Name:' + "${packageName}"
-        dir('Archive') {
-            zip zipFile: "${packageName}", archive: false, dir: '../AutomationWeb/bin/Release/netcoreapp2.1/publish'
-            archiveArtifacts artifacts: "${packageName}", fingerprint: true
-            bat 'del ' + "${packageName}"
-        }
+        // dir('Archive') {
+        //     zip zipFile: "${packageName}", archive: false, dir: "${sourceDir}"
+        //     archiveArtifacts artifacts: "${packageName}", fingerprint: true
+        //     bat 'del ' + "${packageName}"
+        // }
     }
     stage('Deploy') {
+        echo 'Downloading package...'
+        sh "wget http://localhost:8080/job/AutomationWeb/28/artifact/Package_20181218164328.zip"
         echo 'Deploy package...'
+
     }
 }
